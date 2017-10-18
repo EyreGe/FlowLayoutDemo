@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     private List<String> mDatas;
     private FlowLayout mLayout;
-    private FlowLayout flowLayout;
+    private FlowLayout flowLayout, flowLayout3;
     private FlowLayout2 flowLayout2;
 
     @Override
@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         //第一种定义
         flowLayout = ((FlowLayout) findViewById(R.id.flowLayout));
+        flowLayout.isCenterHorizontal(true);
         for (int i = 0; i < mDatas.size(); i++) {
             TextView tv = new TextView(this);
             tv.setText(mDatas.get(i)+"");
@@ -76,6 +77,26 @@ public class MainActivity extends AppCompatActivity {
             tv.setLayoutParams(lp);
 
             flowLayout2.addView(tv);
+        }
+
+        //充满行，不留间隙
+        flowLayout3 = ((FlowLayout) findViewById(R.id.flowLayout3));
+        flowLayout3.setFillLine(true);
+        flowLayout3.setHorizontalSpacing(20);
+        flowLayout3.setVerticalSpacing(15);
+//        flowLayout3.isCenterHorizontal(true);
+        for (int i = 0; i < mDatas.size(); i++) {
+            TextView tv = new TextView(this);
+            tv.setText(mDatas.get(i)+"");
+            tv.setGravity(Gravity.CENTER);
+            tv.setPadding(15, 5, 15, 10);
+            tv.setTextSize(14);
+            tv.setTextColor(getResources().getColor(R.color.red));
+            tv.setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_hollow_shape));
+            tv.setMaxEms(8);
+            tv.setSingleLine();
+            tv.setEllipsize(TextUtils.TruncateAt.END);
+            flowLayout3.addView(tv);
         }
     }
 

@@ -30,7 +30,7 @@ public class FlowLayout extends ViewGroup {
     /** 是否让子view充满该行 */
     private boolean fillLine = false;
     /** 是否水平居中显示 */
-    private boolean centerHorizontal;
+    private boolean centerHorizontalAllView = false;
 
     public FlowLayout(Context context) {
         super(context);
@@ -58,6 +58,11 @@ public class FlowLayout extends ViewGroup {
             requestLayout();
         }
     }
+    /** */
+    public boolean isCenterHorizontal(boolean centerHorizontal) {
+        return centerHorizontalAllView = centerHorizontal;
+    }
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         // 1获取with height 以及mode
@@ -230,7 +235,7 @@ public class FlowLayout extends ViewGroup {
                 }
 
                 //居中显示
-                if (i == 0) {
+                if (centerHorizontalAllView && i == 0) {
                     left += spaceLast / 2;
                 }
 
